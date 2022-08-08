@@ -1,45 +1,37 @@
 <script lang="ts">
-  import svelteLogo from './assets/svelte.svg'
-  import Counter from './lib/Counter.svelte'
+  import Header from "./ui/Header.svelte";
+  import MeetupGrid from "./Meetups/MeetupGrid.svelte";
+
+  const meetups = [
+    {
+      id: 'm1',
+      title: 'Coding Bootcamp',
+      subtitle: 'Learn to code in 2 hours',
+      description: 'In this meetup, we will have some experts to learn',
+      imageUrl: 'https://2e8ram2s1li74atce18qz5y1-wpengine.netdna-ssl.com/wp-content/uploads/2019/01/Bootcamp-MOOC-Learning-Tech-Coding-Programming-Dice-1024x640.png',
+      address: 'Rua do Acre - Centro - Rio de Janeiro - RJ',
+      contact: 'code@test.com'
+    },
+    {
+      id: 'm2',
+      title: 'Swim together',
+      subtitle: 'Lets swim together',
+      description: 'In this meetup, we will have some swim',
+      imageUrl: 'https://2e8ram2s1li74atce18qz5y1-wpengine.netdna-ssl.com/wp-content/uploads/2019/01/Bootcamp-MOOC-Learning-Tech-Coding-Programming-Dice-1024x640.png',
+      address: 'Rua 1º de Março - Centro - Rio de Janeiro - RJ',
+      contact: 'swim@test.com'
+    }
+  ]
 </script>
 
+<Header />
+
 <main>
-  <div>
-    <a href="https://vitejs.dev" target="_blank"> 
-      <img src="/vite.svg" class="logo" alt="Vite Logo" />
-    </a>
-    <a href="https://svelte.dev" target="_blank"> 
-      <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" />
-    </a>
-  </div>
-  <h1>Vite + Svelte</h1>
-
-  <div class="card">
-    <Counter />
-  </div>
-
-  <p>
-    Check out <a href="https://github.com/sveltejs/kit#readme" target="_blank">SvelteKit</a>, the official Svelte app framework powered by Vite!
-  </p>
-
-  <p class="read-the-docs">
-    Click on the Vite and Svelte logos to learn more
-  </p>
+  <MeetupGrid {meetups} />
 </main>
 
 <style>
-  .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-  }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-  }
-  .logo.svelte:hover {
-    filter: drop-shadow(0 0 2em #ff3e00aa);
-  }
-  .read-the-docs {
-    color: #888;
+  main {
+    margin-top: 5rem;
   }
 </style>
