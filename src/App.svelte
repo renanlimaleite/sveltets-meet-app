@@ -1,8 +1,10 @@
 <script lang="ts">
   import Header from "./ui/Header.svelte";
   import MeetupGrid from "./Meetups/MeetupGrid.svelte";
+  import TextInput from './ui/TextInput.svelte';
+  import Button from './ui/Button.svelte';
 
-  const meetups = [
+  let meetups = [
     {
       id: 'm1',
       title: 'Coding Bootcamp',
@@ -22,16 +24,101 @@
       contact: 'swim@test.com'
     }
   ]
+
+  let title = ''
+  let subtitle = ''
+  let address = ''
+  let email = ''
+  let description = ''
+  let imageUrl = ''
+   
+  function addMeetup(event: SubmitEvent) {
+    event.preventDefault()
+
+    const newMeetUp = {
+      id: Math.random().toString(),
+      title,
+      subtitle,
+      description,
+      imageUrl,
+      address,
+      contact: email
+    }
+    
+    
+    meetups = [...meetups, newMeetUp]
+  }
+  
+  function handleInput(e: Event) {
+    const target = e.target as HTMLInputElement;
+    console.log(target.id)
+    console.log(target.value)
+    target.id = target.value
+  }
 </script>
 
 <Header />
 
 <main>
+  <!-- <form on:submit|preventDefault={addMeetup}> -->
+  <form on:submit={addMeetup}>
+
+    <TextInput
+      id="title"
+      label="Title"
+      controlType="text"      
+      bind:value={title}
+    />
+    
+    <TextInput
+      id="subtitle"
+      label="Subtitle"
+      controlType="text"
+      bind:value={subtitle}
+    />
+
+    <TextInput
+      id="address"
+      label="Address"
+      controlType="text"
+      bind:value={address}
+    /> 
+
+    <TextInput
+      id="imageUrl"
+      label="Image Url"
+      controlType="text"
+      bind:value={imageUrl}
+    />
+
+    <TextInput
+      id="email"
+      label="E-mail"
+      controlType="text"
+      type="email"
+      bind:value={email}
+    />
+
+    <TextInput
+      id="description"
+      label="Description"
+      controlType="textarea"
+      bind:value={description}
+    />
+
+    <Button type="submit" caption="Save" />
+  </form>
   <MeetupGrid {meetups} />
 </main>
 
 <style>
   main {
     margin-top: 5rem;
+  }
+
+  form {
+    width: 30rem;
+    max-width: 90%;
+    margin: auto;
   }
 </style>
